@@ -1,14 +1,19 @@
-<div style="text-align:center">
+<div>
   <h1>
     xkcd-gag!   
   </h1>   
 </div>
-<ul>
-  <li *ngFor='let num of post_nums'>
-    <div *ngIf="num.data">
-      <h2>{{num.data.title}}</h2>
-      <img width="450" alt="{{num.data.alt}}" src="{{num.data.img}}">
+<div class="container">
+  <div class="page-wrap">
+    <div class="gags-wrap">
+      <ul class="gag-list">
+        <li *ngFor='let num of post_nums' class="gag-entry">
+          <div *ngIf="num.data">
+            <h1 class="gag-entry-title">{{num.data.title}}</h1>
+            <img class="gag-entry-pic" alt="{{num.data.alt}}" src="{{num.data.img}}">
+          </div>
+        </li>
+      </ul>
     </div>
-  </li>
-</ul>
-
+  </div>
+</div>  
