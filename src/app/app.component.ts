@@ -68,11 +68,12 @@ export class AppComponent {
   }
 
   private loadMoreGags() : void {
-  	this.loadMoreGagsFrom(this.getLastGagIdx());
+  	this.loadMoreGagsFrom(this.getLastGagIdx()-1);
   }
 
   private loadMoreGagsFrom(last_gag_idx) : void {
   	var gags_idxs = Array.from(Array(last_gag_idx+1).keys());
+  	gags_idxs.shift(); 
   	gags_idxs = gags_idxs.reverse();
   	if (this.load_more_gags_size > 0)
   		gags_idxs = gags_idxs.slice(0, this.load_more_gags_size);
