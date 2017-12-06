@@ -8,42 +8,49 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
 
-  xkcd_post_json;
-  title = 'app';	
-  post_nums = [{n:1925}, 
-  			   {n:1924}, 
-  			   {n:1923}, 
-  			   {n:1922}, 
-  			   {n:1921}, 
-  			   {n:1920}, 
-  			   {n:1919}
-  			   ];
+  private current_post_data_url = 'http://xkcd.com/info.0.json';
+  private initial_gag_count = 10;
+
+  posts_count = 0;
+  gags_loaded = [];
+  posts_data  = [];
+
 
   constructor(private http: HttpClient) {
-  	  console.log('hEYYYELY')
-  	  http.get('https://xkcd.com/614/info.0.json')
+  	  http.get(this.current_post_data_url)
   	      .subscribe(
   	      	data => {
-  	          console.log(data)
-              this.xkcd_post_json = data;
+              this.posts_count = data['num'];
+              this.loadInitialGags(this.posts_count);
    	        },
    	        err => {
-   	        	console.log('Something went bad!')
+   	        	console.log('Couldnt retrieve current post count!')
    	        }
       );
-  	  for (var post_num of this.post_nums) {
-  	  	this.getImageURL(post_num);
-  	  }
   }
 
-  public getImageURL(post_num):void {
-	  this.http.get('https://xkcd.com/' + post_num.n + '/info.0.json')
+  private loadInitialGags(current_count) : void {
+  	var gags_idxs = Array.from(Array(current_count).keys());
+  	gags_idxs = gags_idxs.reverse();
+  	this.gags_loaded = gags_idxs.slice(0, this.initial_gag_count);
+  	for (var idx of this.gags_loaded) {
+  		console.log(idx);
+  		var post_data = {n: idx};
+  		this.posts_data.push(post_data);
+  		// Launch async load
+  		this.getPostData(post_data);
+  	}
+  }
+
+  private getPostData(post_data):void {
+	  this.http.get('https://xkcd.com/' + post_data.n + '/info.0.json')
   	           .subscribe(
 		  	      	data => {
-		  	          post_num.data = data;
+		  	          post_data.data = data;
+		  	          console.log(data);
 		   	        },
 		   	        err => {
-		   	        	console.log('Something went bad! (' + post_num.n + ')')
+		   	        	console.log('Couldnt retrieve gag data! (' + post_data.n + ')')
 		   	        }
       		   );	
     	
