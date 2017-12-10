@@ -1,9 +1,9 @@
 <div class="gags-wrap">
   <ul class="gag-list">
-    <li *ngFor='let num of posts_data' class="gag-entry">
-      <div *ngIf="num.data">
-        <h1 class="gag-entry-title">{{num.data.title}}</h1>
-        <img class="gag-entry-pic" alt="{{num.data.alt}}" src="{{num.data.img}}">
+    <li *ngFor='let gag of posts_data' class="gag-entry">
+      <div *ngIf="gag.data">
+        <a routerLink="/gag/{{gag.data.num}}"><h1 class="gag-entry-title">{{gag.data.title}}</h1></a>
+        <a routerLink="/gag/{{gag.data.num}}"><img class="gag-entry-pic" alt="{{gag.data.alt}}" src="{{gag.data.img}}"></a>
       </div>
     </li>
   </ul>

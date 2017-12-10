@@ -22,7 +22,12 @@ li.gag-entry:first-child {
 	width: 500px;
 }
 
+a {
+	text-decoration: none;
+}
+
 .gag-entry-title {
 	font-size: 20px;
+	color: black;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
