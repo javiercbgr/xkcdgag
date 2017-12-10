@@ -4,9 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { TimelineComponent } from './timeline.component';
-import { GagDetailComponent } from './gag-detail.component';
-import { PageNotFoundComponent } from './not-found.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { GagDetailComponent } from './gag-detail/gag-detail.component';
+import { PageNotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/timeline', pathMatch: 'full' },
