@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { NgZone } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app-root.html',
-  styleUrls: ['./app-root.css']
+  selector: 'not-found',
+  templateUrl: './not-found.html'
+  //styleUrls: ['./not-found.css']
 })
 
-export class AppComponent {
+export class PageNotFoundComponent {
 
 }

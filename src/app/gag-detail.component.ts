@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { NgZone } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app-root.html',
-  styleUrls: ['./app-root.css']
+  selector: 'gag-detail',
+  templateUrl: './gag-detail.html'
+  //styleUrls: ['./gagdetail.css']
 })
 
-export class AppComponent {
+export class GagDetailComponent {
 
 }
