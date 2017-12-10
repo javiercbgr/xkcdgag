@@ -12,17 +12,17 @@ export class TimelineComponent {
   private current_post_data_url = 'http://xkcd.com/info.0.json';
   private load_more_gags_size = 10;
 
-  posts_count = 0;
+  gags_count = 0;
   gags_loaded = [];
-  posts_data  = [];
+  gags_data  = [];
 
 
   constructor(private http: HttpClient) {
   	  http.get(this.current_post_data_url)
   	      .subscribe(
   	      	data => {
-              this.posts_count = data['num'];
-              this.loadMoreGagsFrom(this.posts_count);
+              this.gags_count = data['num'];
+              this.loadMoreGagsFrom(this.gags_count);
    	        },
    	        err => {
    	        	console.log('Couldnt retrieve current post count!')
@@ -64,7 +64,7 @@ export class TimelineComponent {
   	if (this.gags_loaded.length > 0)
   		return this.gags_loaded[this.gags_loaded.length-1]
   	else
-  		return this.posts_count;
+  		return this.gags_count;
   }
 
   private loadMoreGags() : void {
@@ -79,7 +79,7 @@ export class TimelineComponent {
   		gags_idxs = gags_idxs.slice(0, this.load_more_gags_size);
   	for (var idx of gags_idxs) {
   		var post_data = {n: idx};
-  		this.posts_data.push(post_data);
+  		this.gags_data.push(post_data);
   		this.gags_loaded.push(idx);
   		// Launch async load
   		this.getPostData(post_data);
