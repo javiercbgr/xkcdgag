@@ -1,4 +1,4 @@
-package com.jcabero.xkcdgag.daos;
+package com.jcabero.xkcdgag.crawler.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
