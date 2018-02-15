@@ -24,11 +24,11 @@ public class XkcdgagCrawlerApplication  {
 	@Bean
 	public CommandLineRunner demo(GagDAO gagDAO) {
 		return (args) -> {
-			gagDAO.save(new Gag(1L,"<url>", "Test gag", 2L, 0L));
-			Iterable<Gag> allGags = gagDAO.findAll();
-			for (Gag g : allGags) {
-				log.info(g.toString());
-			}
+//			gagDAO.save(new Gag(1L,"<url>", "Test gag", 2L, 0L));
+//			Iterable<Gag> allGags = gagDAO.findAll();
+//			for (Gag g : allGags) {
+//				log.info(g.toString());
+//			}
 		};
 	}
 }
