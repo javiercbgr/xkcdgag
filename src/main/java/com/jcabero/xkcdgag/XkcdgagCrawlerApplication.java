@@ -1,4 +1,4 @@
-package com.jcabero.xkcdgag.crawler;
+package com.jcabero.xkcdgag;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.jcabero.xkcdgag.model.GagDAO;
 
 @SpringBootApplication
 public class XkcdgagCrawlerApplication  {
@@ -24,6 +27,7 @@ public class XkcdgagCrawlerApplication  {
 	@Bean
 	public CommandLineRunner demo(GagDAO gagDAO) {
 		return (args) -> {
+			log.info("Success!");
 //			gagDAO.save(new Gag(1L,"<url>", "Test gag", 2L, 0L));
 //			Iterable<Gag> allGags = gagDAO.findAll();
 //			for (Gag g : allGags) {
