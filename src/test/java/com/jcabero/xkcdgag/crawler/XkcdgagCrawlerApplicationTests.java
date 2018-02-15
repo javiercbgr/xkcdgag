@@ -1,4 +1,4 @@
-package com.jcabero.xkcdgag.crawler.xkcdgagcrawler;
+package com.jcabero.xkcdgag.crawler;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
