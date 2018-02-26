@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.jcabero.xkcdgag.crawler.dao.GagDAO;
 import com.jcabero.xkcdgag.crawler.xkcd.model.XKCDGag;
+import com.jcabero.xkcdgag.crawler.xkcd.model.XKCDGag2GagParser;
 
 @EnableBatchProcessing
 @SpringBootApplication
@@ -62,6 +63,12 @@ public class XkcdgagCrawlerApplication  {
 					XKCDGag gag = restTemplate.getForEntity("https://xkcd.com/" + i + "/info.0.json", XKCDGag.class).getBody();
 					gagList.add(gag);
 					log.info(gag.toString());
+					if (gagDAO.find((long) gag.getNum()) == null) {
+						log.info("Doesn't exist, storing.");
+						gagDAO.save(XKCDGag2GagParser.parse(gag));
+					} else {
+						log.info("Already exists, skipping.");
+					}
 				} catch (RestClientException e) {
 					log.info("Gag " + i + " not found.");
 					continue;
