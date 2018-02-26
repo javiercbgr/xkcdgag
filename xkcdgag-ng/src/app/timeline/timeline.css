@@ -1,0 +1,29 @@
+.gags-wrap {
+	width: 640px;
+}
+
+ul.gag-list {
+	list-style-type: none;
+}
+
+li.gag-entry {
+	width: 640px;	
+    margin-bottom: 30px;
+    border-top: 1px solid #eee;
+    padding: 20px 0 0;
+}
+
+li.gag-entry:first-child {
+    border-top: 0;
+    padding: 0 0 0;
+}
+
+.gag-entry-pic {
+	width: 500px;
+}
+
+.gag-entry-title {
+	font-size: 20px;
+	color: black;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}

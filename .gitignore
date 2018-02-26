@@ -14,15 +14,15 @@ application-mysql.properties
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/tmp
-/out-tsc
+xkcdgag-ng/dist
+xkcdgag-ng/tmp
+xkcdgag-ng/out-tsc
 
 # dependencies
-/node_modules
+xkcdgag-ng/node_modules
 
 # IDEs and editors
-/.idea
+xkcdgag-ng/.idea
 .project
 .classpath
 .c9/
@@ -38,17 +38,17 @@ application-mysql.properties
 !.vscode/extensions.json
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
+xkcdgag-ng/.sass-cache
+xkcdgag-ng/connect.lock
+xkcdgag-ng/coverage
+xkcdgag-ng/libpeerconnection.log
 npm-debug.log
 testem.log
-/typings
+xkcdgag-ng/typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+xkcdgag-ng/e2e/*.js
+xkcdgag-ng/e2e/*.map
 
 # System Files
 .DS_Store
