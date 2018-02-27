@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +20,6 @@ import com.jcabero.xkcdgag.crawler.dao.GagDAO;
 import com.jcabero.xkcdgag.crawler.xkcd.model.XKCDGag;
 import com.jcabero.xkcdgag.crawler.xkcd.model.XKCDGag2GagParser;
 
-@EnableBatchProcessing
 @SpringBootApplication
 public class XkcdgagCrawlerApplication  {
 
@@ -34,17 +32,6 @@ public class XkcdgagCrawlerApplication  {
 		SpringApplication.run(XkcdgagCrawlerApplication.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner demo(GagDAO gagDAO) {
-//		return (args) -> {
-////			gagDAO.save(new Gag(1L,"<url>", "Test gag", 2L, 0L));
-////			Iterable<Gag> allGags = gagDAO.findAll();
-////			for (Gag g : allGags) {
-////				log.info(g.toString());
-////			}
-//		};
-//	}
-	
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
