@@ -1,6 +1,9 @@
 spring:
   application:
-    name: eureka
+    name: gag
   cloud:
     config:
       uri: http://localhost:8001
+  profiles:
+    active: mysql
+  

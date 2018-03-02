@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8002
 
 eureka:
   client:
@@ -7,3 +7,7 @@ eureka:
     fetchRegistry: false
   server:
     waitTimeInMsWhenSyncEmpty: 0
+  instance:
+    statusPageUrlPath: ${management.contextPath}/info
+    healthCheckUrlPath: ${management.contextPath}/health
+    hostname: localhost

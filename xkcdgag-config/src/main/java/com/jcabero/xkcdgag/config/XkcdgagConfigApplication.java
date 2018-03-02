@@ -6,9 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @EnableAutoConfiguration
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EnableConfigServer
 public class XkcdgagConfigApplication {
 
