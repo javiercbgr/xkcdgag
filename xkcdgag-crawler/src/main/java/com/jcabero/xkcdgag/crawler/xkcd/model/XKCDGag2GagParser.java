@@ -1,6 +1,6 @@
 package com.jcabero.xkcdgag.crawler.xkcd.model;
 
-import com.jcabero.xkcdgag.crawler.model.Gag;
+import com.jcabero.xkcdgag.gag.model.Gag;
 
 public class XKCDGag2GagParser {
 

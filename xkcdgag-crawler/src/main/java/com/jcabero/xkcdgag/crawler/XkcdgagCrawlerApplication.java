@@ -10,17 +10,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.jcabero.xkcdgag.crawler.dao.GagDAO;
+import com.jcabero.xkcdgag.crawler.restclient.GagClient;
 import com.jcabero.xkcdgag.crawler.xkcd.model.XKCDGag;
 import com.jcabero.xkcdgag.crawler.xkcd.model.XKCDGag2GagParser;
 
+@EnableFeignClients
 @SpringBootApplication
+@EnableDiscoveryClient
 public class XkcdgagCrawlerApplication  {
 
 	private static final Logger log = LoggerFactory.getLogger(XkcdgagCrawlerApplication.class);
@@ -38,7 +42,7 @@ public class XkcdgagCrawlerApplication  {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(GagDAO gagDAO) {
+	public CommandLineRunner demo(GagClient gagDAO) {
 		return (args) -> {
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<XKCDGag> response = restTemplate.getForEntity("https://www.xkcd.com/info.0.json", XKCDGag.class);
@@ -52,7 +56,7 @@ public class XkcdgagCrawlerApplication  {
 					log.info(gag.toString());
 					if (gagDAO.find((long) gag.getNum()) == null) {
 						log.info("Doesn't exist, storing.");
-						gagDAO.save(XKCDGag2GagParser.parse(gag));
+						gagDAO.create(XKCDGag2GagParser.parse(gag));
 					} else {
 						log.info("Already exists, skipping.");
 					}
