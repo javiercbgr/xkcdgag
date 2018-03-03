@@ -1,4 +1,4 @@
-package com.jcabero.xkcdgag.gag;
+package com.jcabero.xkcdgag.gag.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
