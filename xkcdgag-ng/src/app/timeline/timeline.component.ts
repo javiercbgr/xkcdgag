@@ -1,49 +1,41 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { NgZone } from '@angular/core';
 import { GagService } from '../gags/gag.service';
+import { Gag } from '../gags/gag.service';
 
 @Component({
   selector: 'timeline',
   templateUrl: './timeline.html',
   styleUrls: ['./timeline.css']
 })
+
 export class TimelineComponent {
 
-  private current_gag_data_url = 'http://xkcd.com/info.0.json';
   private load_more_gags_size = 10;
+  public gags_data  = [];
 
-  gags_count = 0;
-  gags_loaded = [];
-  gags_data  = [];
-
-
-  constructor(private http: HttpClient,
-              private gagService: GagService) {
-    
-  	  http.get(this.current_gag_data_url)
-  	      .subscribe(
-  	      	data => {
-              this.gags_count = data['num'];
-              this.loadMoreGagsFrom(this.gags_count);
-   	        },
-   	        err => {
-   	        	console.log('Couldnt retrieve current gag count!')
-   	        }
-      );
-
+  constructor(private gagService: GagService) {  
+      gagService.getGags(1960, this.load_more_gags_size) // TODO [JCG] Change to last gag num
+                .subscribe(
+                 (data) => { 
+                    var gag_data = data['_embedded']['gag'];
+                    for (var gd_key in gag_data) {
+                      this.gags_data.push(new Gag(gag_data[gd_key])); 
+                    }
+                 },
+                 (err) => { console.log('Couldnt retrieve last gags data.') }
+               ); 
   	  this.setupOnBottomReachLoadGags();
   }
 
   private setupOnBottomReachLoadGags() {
   	 window.onscroll = () => {
          let status = "not reached";
-         let windowHeight = "innerHeight" in window ? window.innerHeight
-             : document.documentElement.offsetHeight;
+         let windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
          let body = document.body, html = document.documentElement;
-         let docHeight = Math.max(body.scrollHeight,
-             body.offsetHeight, html.clientHeight,
-             html.scrollHeight, html.offsetHeight);
+         let docHeight = Math.max(body.scrollHeight, body.offsetHeight, 
+                                  html.clientHeight, html.scrollHeight, 
+                                  html.offsetHeight);
          let windowBottom = windowHeight + window.pageYOffset;
          if (windowBottom >= docHeight) {
            this.loadMoreGags();
@@ -51,41 +43,11 @@ export class TimelineComponent {
       };
   }
 
-  private getGagData(gag_data) : void {
-	  this.http.get('https://xkcd.com/' + gag_data.n + '/info.0.json')
-  	           .subscribe(
-		  	      	data => {
-		  	          gag_data.data = data;
-		   	        },
-		   	        err => {
-		   	        	console.log('Couldnt retrieve gag data! (' + gag_data.n + ')')
-		   	        }
-      		   );	
-  }
-
-  private getLastGagIdx() : number {
-  	if (this.gags_loaded.length > 0)
-  		return this.gags_loaded[this.gags_loaded.length-1]
-  	else
-  		return this.gags_count;
-  }
-
   private loadMoreGags() : void {
-  	this.loadMoreGagsFrom(this.getLastGagIdx()-1);
-  }
-
-  private loadMoreGagsFrom(last_gag_idx) : void {
-  	var gags_idxs = Array.from(Array(last_gag_idx+1).keys());
-  	gags_idxs.shift(); 
-  	gags_idxs = gags_idxs.reverse();
-  	if (this.load_more_gags_size > 0)
-  		gags_idxs = gags_idxs.slice(0, this.load_more_gags_size);
-  	for (var idx of gags_idxs) {
-  		var gag_data = {n: idx};
-  		this.gags_data.push(gag_data);
-  		this.gags_loaded.push(idx);
-  		// Launch async load
-  		this.getGagData(gag_data);
-  	}
+    var lastNum = this.gags_data[this.gags_data.length-1].number;
+    var gags = this.gagService.getGags(lastNum!=null?lastNum-1:null, this.load_more_gags_size);
+    for (var g in gags) {
+      this.gags_data.push(g);
+    }
   }
 }
