@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY)
 @Entity
 public class Gag {
 
@@ -13,7 +17,8 @@ public class Gag {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID_GAG")
 	private Long id;
-	
+
+	@JsonProperty("number")
 	@Column(name="NUM_GAG")
 	private Long number;
 	
@@ -85,11 +90,5 @@ public class Gag {
 
 	public void setDislikes(Long dislikes) {
 		this.dislikes = dislikes;
-	}
-
-	@Override
-	public String toString() {
-		return "Gag [id=" + id + ", numGag=" + number + ", imgUrl=" + imgUrl + ", title=" + title + ", likes=" + likes
-				+ ", dislikes=" + dislikes + "]";
 	}
 }
