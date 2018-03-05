@@ -30,4 +30,5 @@ li.gag-entry:first-child {
 
 .gag-entry-vote-btn {
 	width: 50px;
+	cursor: pointer;
 }

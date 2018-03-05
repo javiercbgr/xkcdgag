@@ -7,10 +7,40 @@ var current_gag_data_url = 'http://localhost:8005/gag?sort=number,desc';
 export class Gag {
 
   data = null;
+  private likeToggled = false;
+  private dislikeToggled = false;
 
-  constructor(data) {
+  constructor(data, private http: HttpClient) {
+    console.log("Creating gag...");
+    console.log("HTTP: "  + http);
     this.data = data;
     console.log(data);
+  }
+
+  toggleLike() {
+    if (this.likeToggled) {
+       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number']);  
+       this.data['likes']--; 
+       console.log("Like removed");
+    } else {
+       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number']);
+       this.data['likes']++;  
+       console.log("Like added");
+    }
+    this.likeToggled = !this.likeToggled;
+  }
+
+  toggleDislike() {
+    if (this.dislikeToggled) {
+       this.http.get('http://localhost:8005/gag/search/rmDislike?number=' + this.data['number']);  
+       this.data['dislikes']--; 
+       console.log("Dislike removed");
+    } else {
+       this.http.get('http://localhost:8005/gag/search/addDislike?number=' + this.data['number']);
+       this.data['dislikes']++; 
+       console.log("Dislike added");
+    }
+    this.dislikeToggled = !this.dislikeToggled;
   }
 }
 

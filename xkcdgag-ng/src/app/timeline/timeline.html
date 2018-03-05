@@ -7,8 +7,8 @@
         <a routerLink="/gag/{{gag.data.number}}"><img class="gag-entry-pic" alt="{{gag.data.alt}}" src="{{gag.data.imgUrl}}"></a>
       </div>
       <div class="entry-gag-vote-buttons">
-        <img [src]="'./assets/images/upvote.png'" class="gag-entry-vote-btn" alt="" >
-        <img [src]="'./assets/images/downvote.png'" class="gag-entry-vote-btn" alt="" >
+        <a (click)="gag.toggleLike()"><img [src]="'./assets/images/upvote.png'" class="gag-entry-vote-btn" alt="" ></a>
+       <a (click)="alert('hey')"><img [src]="'./assets/images/downvote.png'" class="gag-entry-vote-btn" alt="" ></a>
       </div>
     </li>
   </ul>
