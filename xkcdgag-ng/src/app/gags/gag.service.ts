@@ -14,8 +14,6 @@ export class Gag {
   }
 }
 
-}
-
 @Injectable()
 export class GagService {
 
