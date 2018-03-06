@@ -6,6 +6,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { AppComponent } from './app.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { GagDetailComponent } from './gag-detail/gag-detail.component';
+import { GagStatsComponent } from './gag-stats/gag-stats.component';
 import { PageNotFoundComponent } from './not-found/not-found.component';
 
 import { GagService } from './gags/gag.service';
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     TimelineComponent,
     GagDetailComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    GagStatsComponent
   ],
   imports: [
     BrowserModule,
