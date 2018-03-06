@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class GagDetailComponent {
-
+ 
 	gag = {};
 
 	constructor(
@@ -20,12 +20,14 @@ export class GagDetailComponent {
     	private gagService: GagService
     ) {
 		this.route.params.subscribe((params: Params) => {
-			  let gag_num = params['gag_num'];
+			  var gag_num = params['gag_num'];
         console.log("Loading detail for gag " + gag_num);
         this.gagService.getGag(gag_num)
                        .subscribe(
                        (data) => { 
+                          console.log(gag_num);
                           this.gag = new Gag(this.http, data); 
+                          console.log(data);
                        },
                        (err) => { console.log('Couldnt retrieve gag detail data.') });
       });

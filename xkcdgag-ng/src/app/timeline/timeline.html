@@ -2,7 +2,7 @@
   <ul class="gag-list">
     <li *ngFor='let gag of gags_data' class="gag-entry">
       <div *ngIf="gag.data">
-        <a routerLink="/gag/{{gag.data.number}}"><h1 class="gag-entry-title">{{gag.data.title}}</h1></a>
+        <a routerLink="/gag/{{gag.data.number}}"><h1 class="gag-entry-title">{{gag.data.title}} {{gag.data.number}}</h1></a>
         <a routerLink="/gag/{{gag.data.number}}"><img class="gag-entry-pic" alt="{{gag.data.alt}}" src="{{gag.data.imgUrl}}"></a>
         <a routerLink="/gag/{{gag.data.number}}"><img class="gag-entry-pic" alt="{{gag.data.alt}}" src="{{gag.data.imgUrl}}"></a>
       </div>

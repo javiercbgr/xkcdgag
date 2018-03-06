@@ -15,7 +15,8 @@ import com.jcabero.xkcdgag.gag.model.Gag;
 @RepositoryRestResource(collectionResourceRel = "gag", path = "gag")
 public interface GagREST extends PagingAndSortingRepository<Gag, Long> {
 
-	Gag number(@Param("number") Long number); 
+	@Query("SELECT g FROM Gag g WHERE g.number = :number")
+	Gag gag(@Param("number") Long number); 
 	
 	@Query("SELECT MAX(g.number) FROM Gag g")
 	Integer last();

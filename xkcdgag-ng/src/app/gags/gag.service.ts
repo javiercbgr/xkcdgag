@@ -67,7 +67,7 @@ export class GagService {
   constructor(private http: HttpClient) {}
 
   getGag(num: number) {
-    return this.http.get('http://localhost:8005/gag/' + num);  
+    return this.http.get('http://localhost:8005/gag/search/gag?number=' + num);  
   }
 
   getGags(from: number, count: number) {
