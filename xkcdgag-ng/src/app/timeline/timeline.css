@@ -31,10 +31,13 @@ li.gag-entry:first-child {
 .gag-entry-vote-btn {
 	width: 50px;
 	cursor: pointer;
+	margin-right: 5px;
 }
 
 .entry-gag-likes-comments-stats {
 	color: #999;
 	cursor: pointer;
 	-webkit-font-smoothing: antialiased;
+	margin-top: 5px;
+	margin-bottom: 8px;
 }
