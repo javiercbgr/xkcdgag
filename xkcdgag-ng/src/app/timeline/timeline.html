@@ -6,11 +6,12 @@
         <a routerLink="/gag/{{gag.data.number}}"><img class="gag-entry-pic" alt="{{gag.data.alt}}" src="{{gag.data.imgUrl}}"></a>
         <a routerLink="/gag/{{gag.data.number}}"><img class="gag-entry-pic" alt="{{gag.data.alt}}" src="{{gag.data.imgUrl}}"></a>
       </div>
+      <div class="entry-gag-likes-comments-stats">
+        {{gag.data.likes}} points · 0 comments
+      </div>
       <div class="entry-gag-vote-buttons">
         <a (click)="gag.toggleLike()"><img [src]="'./assets/images/upvote.png'" class="gag-entry-vote-btn" alt="" ></a>
-        {{gag.data.likes}}
         <a (click)="gag.toggleDislike()"><img [src]="'./assets/images/downvote.png'" class="gag-entry-vote-btn" alt="" ></a>
-        {{gag.data.dislikes}}
       </div>
     </li>
   </ul>

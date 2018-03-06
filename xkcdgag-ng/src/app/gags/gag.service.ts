@@ -15,6 +15,11 @@ export class Gag {
   }
 
   toggleLike() {
+    if (this.dislikeToggled) {
+       this.dislikeToggled = false;
+       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number']);
+       this.data['likes']++;  
+    }
     if (this.likeToggled) {
        this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number']);  
        this.data['likes']--; 
@@ -28,13 +33,18 @@ export class Gag {
   }
 
   toggleDislike() {
+    if (this.likeToggled) {
+       this.likeToggled = false;
+       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number']);  
+       this.data['likes']--;  
+    }
     if (this.dislikeToggled) {
-       this.http.get('http://localhost:8005/gag/search/rmDislike?number=' + this.data['number']);  
-       this.data['dislikes']--; 
+       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number']);
+       this.data['likes']++;  
        console.log("Dislike removed");
     } else {
-       this.http.get('http://localhost:8005/gag/search/addDislike?number=' + this.data['number']);
-       this.data['dislikes']++; 
+       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number']);  
+       this.data['likes']--;  
        console.log("Dislike added");
     }
     this.dislikeToggled = !this.dislikeToggled;

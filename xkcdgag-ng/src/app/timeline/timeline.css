@@ -32,3 +32,9 @@ li.gag-entry:first-child {
 	width: 50px;
 	cursor: pointer;
 }
+
+.entry-gag-likes-comments-stats {
+	color: #999;
+	cursor: pointer;
+	-webkit-font-smoothing: antialiased;
+}
