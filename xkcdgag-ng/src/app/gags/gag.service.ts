@@ -3,6 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 var current_gag_data_url = 'http://localhost:8005/gag?sort=number,desc';
+var headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT, OPTIONS',
+  'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, Authorization, X-Request-With',
+  'Access-Control-Allow-Credentials': 'true'
+};
 
 export class Gag {
 
@@ -15,17 +21,19 @@ export class Gag {
   }
 
   toggleLike() {
+    console.log("Like clicked on gag " + this.data['number']);
     if (this.dislikeToggled) {
        this.dislikeToggled = false;
-       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number']);
+       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number'], {headers: headers}).subscribe(response => console.log(response));
        this.data['likes']++;  
+       console.log("Dislike removed");
     }
     if (this.likeToggled) {
-       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number']);  
+       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number'], {headers: headers}).subscribe(response => console.log(response));
        this.data['likes']--; 
        console.log("Like removed");
     } else {
-       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number']);
+       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number'], {headers: headers}).subscribe(response => console.log(response));
        this.data['likes']++;  
        console.log("Like added");
     }
@@ -33,17 +41,19 @@ export class Gag {
   }
 
   toggleDislike() {
+    console.log("Dislike clicked on gag " + this.data['number']);
     if (this.likeToggled) {
        this.likeToggled = false;
-       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number']);  
+       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number'], {headers: headers}).subscribe(response => console.log(response));
        this.data['likes']--;  
+       console.log("Like removed");
     }
     if (this.dislikeToggled) {
-       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number']);
+       this.http.get('http://localhost:8005/gag/search/addLike?number=' + this.data['number'], {headers: headers}).subscribe(response => console.log(response));
        this.data['likes']++;  
        console.log("Dislike removed");
     } else {
-       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number']);  
+       this.http.get('http://localhost:8005/gag/search/rmLike?number=' + this.data['number'], {headers: headers}).subscribe(response => console.log(response)); 
        this.data['likes']--;  
        console.log("Dislike added");
     }
