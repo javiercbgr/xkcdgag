@@ -1,5 +1,6 @@
 package com.jcabero.xkcdgag.gag.controller;
 
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -28,7 +29,7 @@ public interface GagREST extends PagingAndSortingRepository<Gag, Long> {
 	@Transactional
 	@Query("UPDATE Gag g set g.likes = g.likes + 1 WHERE g.number = :number")
 	void addLike(@Param("number") Long number);
-	
+
 	@Modifying
 	@Transactional
 	@Query("UPDATE Gag g set g.likes = g.likes - 1 WHERE g.number = :number")
