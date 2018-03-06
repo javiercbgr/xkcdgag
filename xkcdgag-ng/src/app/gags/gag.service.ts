@@ -10,11 +10,8 @@ export class Gag {
   private likeToggled = false;
   private dislikeToggled = false;
 
-  constructor(data, private http: HttpClient) {
-    console.log("Creating gag...");
-    console.log("HTTP: "  + http);
+  constructor(private http: HttpClient, data) {
     this.data = data;
-    console.log(data);
   }
 
   toggleLike() {
@@ -53,7 +50,7 @@ export class GagService {
     return this.http.get('http://localhost:8005/gag/' + num)
              .subscribe(
              data => {
-                return new Gag(data['_embedded']['gag']);
+                return new Gag(this.http, data['_embedded']['gag']);
              },
              err => {
                  console.log('Couldnt retrieve gag data (' + num + ').')

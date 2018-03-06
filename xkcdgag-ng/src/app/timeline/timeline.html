@@ -8,7 +8,9 @@
       </div>
       <div class="entry-gag-vote-buttons">
         <a (click)="gag.toggleLike()"><img [src]="'./assets/images/upvote.png'" class="gag-entry-vote-btn" alt="" ></a>
-       <a (click)="alert('hey')"><img [src]="'./assets/images/downvote.png'" class="gag-entry-vote-btn" alt="" ></a>
+        {{gag.data.likes}}
+        <a (click)="gag.toggleDislike()"><img [src]="'./assets/images/downvote.png'" class="gag-entry-vote-btn" alt="" ></a>
+        {{gag.data.dislikes}}
       </div>
     </li>
   </ul>

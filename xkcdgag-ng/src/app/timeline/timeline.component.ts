@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgZone } from '@angular/core';
 import { GagService } from '../gags/gag.service';
 import { Gag } from '../gags/gag.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'timeline',
@@ -14,13 +15,14 @@ export class TimelineComponent {
   private load_more_gags_size = 10;
   public gags_data  = [];
 
-  constructor(private gagService: GagService) {  
+  constructor(private http: HttpClient,
+              private gagService: GagService) {  
       gagService.getGags(1960, this.load_more_gags_size) // TODO [JCG] Change to last gag num
                 .subscribe(
                  (data) => { 
                     var gag_data = data['_embedded']['gag'];
                     for (var gd_key in gag_data) {
-                      this.gags_data.push(new Gag(gag_data[gd_key])); 
+                      this.gags_data.push(new Gag(this.http, gag_data[gd_key])); 
                     }
                  },
                  (err) => { console.log('Couldnt retrieve last gags data.') }
