@@ -8,7 +8,6 @@ public class XKCDGag2GagParser {
 		return new Gag((long) xkcdGag.getNum(),
 					   xkcdGag.getImg(),
 					   xkcdGag.getTitle(),
-					   0L,
 					   0L);
 	}
 }

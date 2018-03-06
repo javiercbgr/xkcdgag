@@ -31,17 +31,13 @@ public class Gag {
 	@Column(name="LIKES")
 	private Long likes;
 	
-	@Column(name="DISLIKES")
-	private Long dislikes;
-
 	public Gag() {}
 	
-	public Gag(Long number, String imgUrl, String title, Long likes, Long dislikes) {
+	public Gag(Long number, String imgUrl, String title, Long likes) {
 		this.number = number;
 		this.imgUrl = imgUrl;
 		this.title = title;
 		this.likes = likes;
-		this.dislikes = dislikes;
 	}
 
 	public Long getId() {
@@ -82,13 +78,5 @@ public class Gag {
 
 	public void setLikes(Long likes) {
 		this.likes = likes;
-	}
-
-	public Long getDislikes() {
-		return dislikes;
-	}
-
-	public void setDislikes(Long dislikes) {
-		this.dislikes = dislikes;
 	}
 }

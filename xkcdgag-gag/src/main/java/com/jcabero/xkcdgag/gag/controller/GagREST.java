@@ -25,10 +25,4 @@ public interface GagREST extends PagingAndSortingRepository<Gag, Long> {
 	
 	@Query("UPDATE Gag g set g.likes = g.likes - 1 WHERE g.number = :number")
 	void rmLike(@Param("number") Integer number);
-	
-	@Query("UPDATE Gag g set g.dislikes = g.dislikes + 1 WHERE g.number = :number")
-	void addDislike(@Param("number") Integer number);
-	
-	@Query("UPDATE Gag g set g.dislikes = g.dislikes - 1 WHERE g.number = :number")
-	void rmDislike(@Param("number") Integer number);
 }
