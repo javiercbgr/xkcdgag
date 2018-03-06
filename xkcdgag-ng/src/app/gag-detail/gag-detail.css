@@ -1,5 +1,6 @@
 .gag-detail-wrapper {
 	padding-top: 20px;
+	width: 640px;	
 }
 
 .gag-detail-title {
@@ -14,4 +15,24 @@
 
 .gag-detail-pic {
 	width: 600px;
+}
+
+.comment-count-text {
+    border-bottom: 1px solid #ddd;
+}
+
+.comment-count-text h3 {
+	margin-bottom: 6px;
+}
+
+.comment-input {
+	margin-top: 10px;
+}
+
+.comment-list {
+	margin-top: 10px;
+}
+
+.comment-list-ul {
+	list-style-type: none;
 }

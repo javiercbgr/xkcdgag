@@ -4,4 +4,20 @@
 	<div class="gag-detail-pic-warpper">
 		<img class="gag-detail-pic" alt="{{gag.data.alt}}" src="{{gag.data.imgUrl}}">
 	</div>
+	<div class="comment-section">
+		<div class="comment-count-text">
+			<h3>{{gag.data.comments.length}} comments</h3>
+		</div>
+		<div class="comment-input">
+			<textarea></textarea>
+			<a><img [src]="'assets/images/post.png'"></a>
+		</div>
+		<div class="comment-list">
+		  <ul class="comment-list-ul">
+		    <li *ngFor='let comment of gag.data.comments' class="comment-entry">
+		    	{{comment.text}}
+		    </li>
+		  </ul>
+		</div>
+	</div>
 </div>

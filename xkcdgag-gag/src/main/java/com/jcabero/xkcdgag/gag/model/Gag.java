@@ -1,10 +1,13 @@
 package com.jcabero.xkcdgag.gag.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +33,9 @@ public class Gag {
 	
 	@Column(name="LIKES")
 	private Long likes;
+	
+	@OneToMany(mappedBy="gag")
+	private List<Comment> comments;
 	
 	public Gag() {}
 	
@@ -78,5 +84,13 @@ public class Gag {
 
 	public void setLikes(Long likes) {
 		this.likes = likes;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComment(List<Comment> comments) {
+		this.comments = comments;
 	}
 }
