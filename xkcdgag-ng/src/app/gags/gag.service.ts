@@ -67,15 +67,7 @@ export class GagService {
   constructor(private http: HttpClient) {}
 
   getGag(num: number) {
-    return this.http.get('http://localhost:8005/gag/' + num)
-             .subscribe(
-             data => {
-                return new Gag(this.http, data['_embedded']['gag']);
-             },
-             err => {
-                 console.log('Couldnt retrieve gag data (' + num + ').')
-             }
-             );  
+    return this.http.get('http://localhost:8005/gag/' + num);  
   }
 
   getGags(from: number, count: number) {
