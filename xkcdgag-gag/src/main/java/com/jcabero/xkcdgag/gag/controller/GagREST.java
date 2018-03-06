@@ -1,7 +1,10 @@
 package com.jcabero.xkcdgag.gag.controller;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -19,10 +22,14 @@ public interface GagREST extends PagingAndSortingRepository<Gag, Long> {
 
 	@Query("SELECT g FROM Gag g WHERE g.number <= :from ORDER BY g.number DESC")
 	Page<Gag> lastGags(Pageable pageable, @Param("from") Long from);
-
-	@Query("UPDATE Gag g set g.likes = g.likes + 1 WHERE g.number = :number")
-	void addLike(@Param("number") Integer number);
 	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Gag g set g.likes = g.likes + 1 WHERE g.number = :number")
+	void addLike(@Param("number") Long number);
+	
+	@Modifying
+	@Transactional
 	@Query("UPDATE Gag g set g.likes = g.likes - 1 WHERE g.number = :number")
-	void rmLike(@Param("number") Integer number);
+	void rmLike(@Param("number") Long number);
 }
